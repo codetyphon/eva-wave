@@ -23,11 +23,19 @@ export class WaveAction extends Component {
         const { x } = this.gameObject.getComponent(Transform).position
 
         if (this.direction == Direction.left) {
-            this.gameObject.getComponent(Transform).position.x -= 6
+            let i = x - 6
+            if (i < (1280 * 2 - GAME_SIZE.WIDTH) * -1) {
+                i = (1280 * 2 - GAME_SIZE.WIDTH) * -1
+            }
+            this.gameObject.getComponent(Transform).position.x = i
         }
 
         if (this.direction == Direction.right) {
-            this.gameObject.getComponent(Transform).position.x += 6
+            let i = x + 6
+            if (i >= 0) {
+                i = 0
+            }
+            this.gameObject.getComponent(Transform).position.x = i
         }
 
         if (x >= 0 && this.direction == Direction.right) {
